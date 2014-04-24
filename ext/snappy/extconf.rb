@@ -8,6 +8,9 @@ begin
   Dir.chdir(snappy_dir)
 
   fork {
+    exec("./libtoolize -f")
+  }; Process.wait;
+  fork {
     exec("./configure")
   }; Process.wait; exit(1) unless $?.success?
   fork {
